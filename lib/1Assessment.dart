@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './0.1global_variables.dart';
 import './1.1Question.dart';
 import './1.2Result.dart';
+import './1.3Algorithm.dart';
 /* import './2History.dart'; */
 
 class Assessment extends StatefulWidget {
@@ -70,14 +71,34 @@ class _AssessmentState extends State<Assessment> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          List<String> assessmentResults = [];
+          List<String> assessmentAnswerByUser = [];
           for (int i = 0; i < questions.length; i++) {
-            assessmentResults.add('${questions[i].text}: ${answers[i]}');
+            assessmentAnswerByUser.add('${questions[i].text}: ${answers[i]}');
           }
+
+          List<String> resultStrings = calculateValues(answers); //1.3Algorithm
+          /* String reaslisticString = resultStrings[0];
+          String investigativeString = resultStrings[1];
+          String artisticString = resultStrings[2];
+          String socialString = resultStrings[3];
+          String enterprisingString = resultStrings[4];
+          String conventionalString = resultStrings[5]; */
+          String countYesUseString = resultStrings[6];
+
+          print('Number of "Yes" answers: $countYesUseString');
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => Result(results: assessmentResults)));
+                  builder: (context) => Result(
+                        assessmentAnswerByUser: assessmentAnswerByUser,
+                        resultStrings: resultStrings,
+                        /* reaslisticValue: reaslisticString,
+                        investigativeValue: investigativeString,
+                        artisticValue: artisticString,
+                        socialValue: socialString,
+                        enterprisingValue: enterprisingString,
+                        conventionalValue: conventionalString, */
+                      )));
         },
         child: Icon(Icons.check),
       ),
