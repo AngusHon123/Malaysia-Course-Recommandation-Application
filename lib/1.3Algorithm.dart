@@ -11,50 +11,68 @@ List<String> calculateValues(List<String> answers) {
   for (String answer in answers) {
     if (ifUse <= 16 && answer == 'Yes') {
       reaslisticUse++;
+      ifUse++;
       countYesUse++;
     }
     if (ifUse > 16 && ifUse <= 34 && answer == 'Yes') {
       investigativeUse++;
+      ifUse++;
       countYesUse++;
+      print(countYesUse);
     }
     if (ifUse > 35 && ifUse <= 47 && answer == 'Yes') {
       artisticUse++;
+      ifUse++;
       countYesUse++;
+      print(countYesUse);
     }
     if (ifUse > 48 && ifUse <= 64 && answer == 'Yes') {
       socialUse++;
+      ifUse++;
       countYesUse++;
+      print(countYesUse);
     }
     if (ifUse > 65 && ifUse <= 81 && answer == 'Yes') {
       enterprisingUse++;
+      ifUse++;
       countYesUse++;
+      print(countYesUse);
     }
     if (ifUse > 65 && ifUse <= 81 && answer == 'Yes') {
       conventionalUse++;
+      ifUse++;
       countYesUse++;
     }
   }
-  //realisticCalculation
+  /* print('artisticUse:');
+  print(artisticUse);
+  print('/n');
+  print('countYesUse:');
+  print(countYesUse);
+  print('/n'); */
+  //
+  ////realisticCalculation
   double reaslisticValue = reaslisticUse / 17;
-  String reaslisticString = (reaslisticValue * 100).toStringAsFixed(0) + '%';
+  var reaslisticString = (reaslisticValue * 100).toStringAsFixed(0);
+  //
   //investigativeCalculation
-  double investigativeValue = investigativeUse / 17;
-  String investigativeString =
-      (investigativeValue * 100).toStringAsFixed(0) + '%';
-  //artisticCalculation
-  double artisticValue = artisticUse / 17;
-  String artisticString = (artisticValue * 100).toStringAsFixed(0) + '%';
-  //SosialCalculation
-  double socialValue = socialUse / 17;
-  String socialString = (socialValue * 100).toStringAsFixed(0) + '%';
-  //enterprisingCalculation
+  double investigativeValue = investigativeUse / 18;
+  var investigativeString = (investigativeValue * 100).toStringAsFixed(0);
+  //
+  ////artisticCalculation
+  double artisticValue = artisticUse / 14;
+  var artisticString = (artisticValue * 100).toStringAsFixed(0);
+  ////SosialCalculation
+  double socialValue = socialUse / 18;
+  var socialString = (socialValue * 100).toStringAsFixed(0);
+  //
+  ////enterprisingCalculation
   double enterprisingValue = enterprisingUse / 17;
-  String enterprisingString =
-      (enterprisingValue * 100).toStringAsFixed(0) + '%';
+  var enterprisingString = (enterprisingValue * 100).toStringAsFixed(0);
+  //
   //conventionalCalculation
-  double conventionalValue = conventionalUse / 17;
-  String conventionalString =
-      (conventionalValue * 100).toStringAsFixed(0) + '%';
+  double conventionalValue = conventionalUse / 16;
+  var conventionalString = (conventionalValue * 100).toStringAsFixed(0);
 
   String countYesUseString = countYesUse.toStringAsFixed(0);
 

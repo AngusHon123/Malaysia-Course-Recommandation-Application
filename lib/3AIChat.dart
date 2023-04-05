@@ -1,4 +1,4 @@
-/* import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import './0.1global_variables.dart';
 
 class AIChat extends StatelessWidget {
@@ -46,25 +46,6 @@ class AIChat extends StatelessWidget {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
- */
-
-import 'package:flutter/material.dart';
-import './0.1global_variables.dart';
-import './1.4RadarChart.dart'; // 导入RadarChart组件
-
-class AIChat extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'UPR',
-      home: Scaffold(
-        body: Center(
-          child: RadarChart(), // 将 Column 组件替换为 RadarChart 组件
         ),
       ),
     );

@@ -3,6 +3,7 @@ import './0.1global_variables.dart';
 import './1.1Question.dart';
 import './1.2Result.dart';
 import './1.3Algorithm.dart';
+import './1.4RadarChart.dart';
 /* import './2History.dart'; */
 
 class Assessment extends StatefulWidget {
@@ -11,11 +12,6 @@ class Assessment extends StatefulWidget {
 }
 
 class _AssessmentState extends State<Assessment> {
-  String name = 'hhhh';
-  String email = 'eeeee';
-  String phone = 'ppp';
-  String address = 'ppp';
-
   List<String> answers = []; // 添加初始化
 
   @override
@@ -77,12 +73,7 @@ class _AssessmentState extends State<Assessment> {
           }
 
           List<String> resultStrings = calculateValues(answers); //1.3Algorithm
-          /* String reaslisticString = resultStrings[0];
-          String investigativeString = resultStrings[1];
-          String artisticString = resultStrings[2];
-          String socialString = resultStrings[3];
-          String enterprisingString = resultStrings[4];
-          String conventionalString = resultStrings[5]; */
+
           String countYesUseString = resultStrings[6];
 
           print('Number of "Yes" answers: $countYesUseString');
@@ -92,12 +83,6 @@ class _AssessmentState extends State<Assessment> {
                   builder: (context) => Result(
                         assessmentAnswerByUser: assessmentAnswerByUser,
                         resultStrings: resultStrings,
-                        /* reaslisticValue: reaslisticString,
-                        investigativeValue: investigativeString,
-                        artisticValue: artisticString,
-                        socialValue: socialString,
-                        enterprisingValue: enterprisingString,
-                        conventionalValue: conventionalString, */
                       )));
         },
         child: Icon(Icons.check),
