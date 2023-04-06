@@ -4,7 +4,6 @@ import './1.1Question.dart';
 import './1.2Result.dart';
 import './1.3Algorithm.dart';
 import './1.4RadarChart.dart';
-/* import './2History.dart'; */
 
 class Assessment extends StatefulWidget {
   @override
@@ -13,6 +12,7 @@ class Assessment extends StatefulWidget {
 
 class _AssessmentState extends State<Assessment> {
   List<String> answers = []; // 添加初始化
+  /* List<String> categories = []; */
 
   @override
   void initState() {
@@ -73,16 +73,15 @@ class _AssessmentState extends State<Assessment> {
           }
 
           List<String> resultStrings = calculateValues(answers); //1.3Algorithm
+          List<String> assessmentCategories = findCategories(resultStrings);
 
-          String countYesUseString = resultStrings[6];
-
-          print('Number of "Yes" answers: $countYesUseString');
           Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) => Result(
                         assessmentAnswerByUser: assessmentAnswerByUser,
                         resultStrings: resultStrings,
+                        categories: assessmentCategories,
                       )));
         },
         child: Icon(Icons.check),

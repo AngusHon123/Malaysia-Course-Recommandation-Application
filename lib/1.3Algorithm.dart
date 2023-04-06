@@ -11,49 +11,35 @@ List<String> calculateValues(List<String> answers) {
   for (String answer in answers) {
     if (ifUse <= 16 && answer == 'Yes') {
       reaslisticUse++;
-      ifUse++;
       countYesUse++;
-    }
-    if (ifUse > 16 && ifUse <= 34 && answer == 'Yes') {
+    } else if (ifUse > 16 && ifUse <= 34 && answer == 'Yes') {
       investigativeUse++;
-      ifUse++;
       countYesUse++;
       print(countYesUse);
-    }
-    if (ifUse > 35 && ifUse <= 47 && answer == 'Yes') {
+    } else if (ifUse > 35 && ifUse <= 47 && answer == 'Yes') {
       artisticUse++;
-      ifUse++;
       countYesUse++;
       print(countYesUse);
-    }
-    if (ifUse > 48 && ifUse <= 64 && answer == 'Yes') {
+    } else if (ifUse > 48 && ifUse <= 64 && answer == 'Yes') {
       socialUse++;
-      ifUse++;
       countYesUse++;
       print(countYesUse);
-    }
-    if (ifUse > 65 && ifUse <= 81 && answer == 'Yes') {
+    } else if (ifUse > 65 && ifUse <= 81 && answer == 'Yes') {
       enterprisingUse++;
-      ifUse++;
       countYesUse++;
       print(countYesUse);
-    }
-    if (ifUse > 65 && ifUse <= 81 && answer == 'Yes') {
+    } else if (ifUse > 82 && ifUse <= 98 && answer == 'Yes') {
       conventionalUse++;
-      ifUse++;
       countYesUse++;
     }
+    print(ifUse);
+    ifUse++;
   }
-  /* print('artisticUse:');
-  print(artisticUse);
-  print('/n');
-  print('countYesUse:');
-  print(countYesUse);
-  print('/n'); */
-  //
+
   ////realisticCalculation
   double reaslisticValue = reaslisticUse / 17;
   var reaslisticString = (reaslisticValue * 100).toStringAsFixed(0);
+  /* var reaslisticString = (reaslisticValue * 100).toStringAsFixed(0); */
   //
   //investigativeCalculation
   double investigativeValue = investigativeUse / 18;
@@ -75,7 +61,30 @@ List<String> calculateValues(List<String> answers) {
   var conventionalString = (conventionalValue * 100).toStringAsFixed(0);
 
   String countYesUseString = countYesUse.toStringAsFixed(0);
+  /* print('Number of "Yes" answers: $countYesUseString ');
+  print('Number of "reaslisticUse" answers: $reaslisticUse ');
+  print('Number of "reaslisticValue" answers: $reaslisticValue ');
+  print('Number of "reaslisticString" answers: $reaslisticString ');
+  print('Number of "investigativeUse" answers: $investigativeUse ');
 
+  print('Number of "investigativeValue" answers: $investigativeValue ');
+  print('Number of "investigativeString" answers: $investigativeString ');
+
+  print('Number of "artisticUse" answers: $artisticUse ');
+  print('Number of "artisticValue" answers: $artisticValue ');
+  print('Number of "artisticString" answers: $artisticString ');
+
+  print('Number of "socialUse" answers: $socialUse ');
+  print('Number of "socialValue" answers: $socialValue ');
+  print('Number of "socialString" answers: $socialString ');
+
+  print('Number of "enterprisingUse" answers: $enterprisingUse ');
+  print('Number of "enterprisingValue" answers: $enterprisingValue ');
+  print('Number of "enterprisingString" answers: $enterprisingString ');
+
+  print('Number of "conventionalUse" answers: $conventionalUse ');
+  print('Number of "conventionalValue" answers: $conventionalValue ');
+  print('Number of "conventionalString" answers: $conventionalString '); */
   return [
     reaslisticString,
     investigativeString,
@@ -83,6 +92,29 @@ List<String> calculateValues(List<String> answers) {
     socialString,
     enterprisingString,
     conventionalString,
-    countYesUseString
+    //countYesUseString
   ];
+}
+
+List<String> findCategories(List<String> resultStrings) {
+  List<String> Categories = [
+    'realistic',
+    'investigative',
+    'artistic',
+    'social',
+    'enterprising',
+    'conventional'
+  ];
+
+  List<int> resultInts = resultStrings.map(int.parse).toList();
+
+  Map<String, int> categoryMap = Map.fromIterables(Categories, resultInts);
+  List<MapEntry<String, int>> sortedCategories = categoryMap.entries.toList()
+    ..sort((a, b) => b.value.compareTo(a.value));
+
+  List<String> topThreeCategories =
+      sortedCategories.take(3).map((entry) => entry.key).toList();
+  print(Categories);
+  print(topThreeCategories);
+  return topThreeCategories;
 }

@@ -8,10 +8,12 @@ import './1.4RadarChart.dart';
 class Result extends StatelessWidget {
   final List<String> assessmentAnswerByUser;
   final List<String> resultStrings;
+  final List<String> categories;
 
   const Result({
     required this.assessmentAnswerByUser,
     required this.resultStrings,
+    required this.categories,
   });
 
   @override
@@ -31,7 +33,7 @@ class Result extends StatelessWidget {
       body: ListView(
         children: [
           Container(
-            height: 200,
+            height: 50,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -47,6 +49,13 @@ class Result extends StatelessWidget {
               children: [RadarChartWidget(resultStrings: resultStrings)],
             ),
           ),
+          Text('Your top 3 categories/themes are: ' +
+              categories[0] +
+              ',' +
+              categories[1] +
+              ',' +
+              categories[2] +
+              '.'),
         ],
       ),
     );
