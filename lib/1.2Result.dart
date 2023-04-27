@@ -5,6 +5,7 @@ import '1.1Question.dart';
 import 'package:fl_chart/fl_chart.dart';
 import './1.4RadarChart.dart';
 import './1.5DBHelper.dart';
+import './2History.dart';
 
 class Result extends StatelessWidget {
   final List<String> assessmentAnswerByUser;
@@ -33,13 +34,12 @@ class Result extends StatelessWidget {
         actions: [
           ElevatedButton(
             onPressed: () async {
-              DatabaseHelper dbHelper = DatabaseHelper();
-              int result = await dbHelper.insertData("John Doe", 30);
-              print("New record inserted with ID: $result");
-              final snackBar = SnackBar(
-                content: Text('Saved'),
-              );
+              final dbHelper = DatabaseHelper();
+              await dbHelper.insertData('aaaaa', 'ccccc', 'sssss');
+              final snackBar = SnackBar(content: Text('Saved'));
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              await Future.delayed(Duration(seconds: 1));
+              Navigator.popUntil(context, (route) => route.isFirst);
             },
             child: Text('Save'),
           ),

@@ -27,12 +27,17 @@ class DatabaseHelper {
 
   Future<void> _onCreate(Database db, int version) async {
     await db.execute(
-        'CREATE TABLE my_table(id INTEGER PRIMARY KEY, name TEXT, age INTEGER)');
+        'CREATE TABLE my_table(id INTEGER PRIMARY KEY, categories1 TEXT, categories2 TEXT, categories3 Text)');
   }
 
-  Future<int> insertData(String name, int age) async {
+  Future<int> insertData(
+      String categories1, String categories2, String categories3) async {
     final db = await database;
-    final values = {'name': name, 'age': age};
+    final values = {
+      'categories1': categories1,
+      'categories2': categories2,
+      'categories3': categories3
+    };
     return await db.insert('my_table', values);
   }
 
