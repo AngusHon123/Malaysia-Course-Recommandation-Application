@@ -29,7 +29,7 @@ class RadarChartWidget extends StatelessWidget {
         ticks: ticks,
         features: features,
         data: data,
-        reverseAxis: false,
+        reverseAxis: true,
         useSides: false,
       ),
     );

@@ -34,12 +34,28 @@ class Result extends StatelessWidget {
         actions: [
           ElevatedButton(
             onPressed: () async {
-              final dbHelper = DatabaseHelper();
-              await dbHelper.insertData('aaaaa', 'ccccc', 'sssss');
+              await DBHelper.insert('mytable', {
+                'name': categories[0],
+                'age': '32',
+                'reaslisticString': resultStrings[0] = '2'.toString(),
+                'investigativeString': resultStrings[1] = '3'.toString(),
+                'artisticString': resultStrings[2] = '4'.toString(),
+                'socialString': resultStrings[3] = '5'.toString(),
+                'enterprisingString': resultStrings[4] = '6'.toString(),
+                'conventionalString': resultStrings[5] = '7'.toString(),
+                'categories1': categories[0],
+                'categories2': categories[1],
+                'categories3': categories[2],
+              });
               final snackBar = SnackBar(content: Text('Saved'));
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
               await Future.delayed(Duration(seconds: 1));
-              Navigator.popUntil(context, (route) => route.isFirst);
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MyHomePage(),
+                ),
+              );
             },
             child: Text('Save'),
           ),

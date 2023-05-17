@@ -1,94 +1,138 @@
-/* import 'package:flutter/material.dart';
-import './0.1global_variables.dart';
-import './1.2Result.dart';
-
-class History extends StatefulWidget {
-  final List<String> categories = [];
-
-  @override
-  _HistoryState createState() => _HistoryState();
-}
-
-class _HistoryState extends State<History> {
-  List<Widget> cardList = [];
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          Text(
-            'Your name is: ${name != null ? name : 'null'}',
-            style: TextStyle(fontSize: 24),
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: cardList.length,
-              itemBuilder: (BuildContext context, int index) {
-                return cardList[index];
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
- */
-
+import './1.5dbHelper.dart';
 import 'package:flutter/material.dart';
-import 'package:fyp/0.1global_variables.dart';
-import './1.2Result.dart';
-import './1.5DBHelper.dart';
 
-class History extends StatefulWidget {
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key? key}) : super(key: key);
+
   @override
-  _HistoryState createState() => _HistoryState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _HistoryState extends State<History> {
-  List<Map<String, dynamic>> _data = [];
+class _MyHomePageState extends State<MyHomePage> {
+  final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
+  final _ageController = TextEditingController();
+  List<Map<String, dynamic>> _dataList = [];
 
   @override
   void initState() {
     super.initState();
-    _loadData();
+    _getData();
   }
 
-  Future<void> _loadData() async {
-    final dbHelper = DatabaseHelper();
-    final data = await dbHelper.getData();
+  Future<void> _getData() async {
+    final dataList = await DBHelper.getData('mytable');
     setState(() {
-      _data = data;
+      _dataList = dataList;
     });
+  }
+
+  Future<void> _addData() async {
+    if (_formKey.currentState!.validate()) {
+      print(_ageController.text);
+      await DBHelper.insert('mytable', {
+        'name': _nameController.text,
+        'age': _ageController.text,
+      });
+      _nameController.clear();
+      _ageController.clear();
+      _getData();
+    }
+  }
+
+  Future<void> _deleteData(int id) async {
+    await DBHelper.deleteData('mytable', id);
+    _getData();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          Text(
-            'Your name is: $name',
-            style: TextStyle(fontSize: 24),
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: _data.length,
-              itemBuilder: (BuildContext context, int index) {
-                final categories1 = _data[index]['categories1'];
-                final categories2 = _data[index]['categories2'];
-                final categories3 = _data[index]['categories3'];
-
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Form(
+              key: _formKey,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextFormField(
+                      controller: _nameController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter a name';
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                        labelText: 'Name',
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                    TextFormField(
+                      controller: _ageController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter a age';
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                        labelText: 'Age',
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                    SizedBox(height: 16.0),
+                    ElevatedButton(
+                      onPressed: _addData,
+                      child: Text('Add'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Divider(),
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: _dataList.length,
+              itemBuilder: (context, index) {
+                final data = _dataList[index];
                 return Card(
-                  child: ListTile(
-                    title: Text('$categories1, $categories2, $categories3'),
+                  margin: const EdgeInsets.symmetric(
+                      horizontal: 16.0, vertical: 8.0),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Name: ${data['name']}',
+                              style: TextStyle(fontSize: 18.0),
+                            ),
+                            SizedBox(height: 4.0),
+                            Text(
+                              'Age: ${data['categories1']}',
+                              style: TextStyle(fontSize: 16.0),
+                            ),
+                          ],
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.delete),
+                          onPressed: () => _deleteData(data['id']),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

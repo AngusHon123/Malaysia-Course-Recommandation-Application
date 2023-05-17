@@ -12,7 +12,6 @@ class Assessment extends StatefulWidget {
 
 class _AssessmentState extends State<Assessment> {
   List<String> answers = []; // 添加初始化
-  /* List<String> categories = []; */
 
   @override
   void initState() {
@@ -73,7 +72,8 @@ class _AssessmentState extends State<Assessment> {
           }
 
           List<String> resultStrings = calculateValues(answers); //1.3Algorithm
-          List<String> assessmentCategories = findCategories(resultStrings);
+          List<String> assessmentCategories =
+              findCategories(resultStrings); //1.3Algorithm
 
           Navigator.push(
               context,

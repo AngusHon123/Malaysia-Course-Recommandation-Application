@@ -61,30 +61,7 @@ List<String> calculateValues(List<String> answers) {
   var conventionalString = (conventionalValue * 100).toStringAsFixed(0);
 
   String countYesUseString = countYesUse.toStringAsFixed(0);
-  /* print('Number of "Yes" answers: $countYesUseString ');
-  print('Number of "reaslisticUse" answers: $reaslisticUse ');
-  print('Number of "reaslisticValue" answers: $reaslisticValue ');
-  print('Number of "reaslisticString" answers: $reaslisticString ');
-  print('Number of "investigativeUse" answers: $investigativeUse ');
 
-  print('Number of "investigativeValue" answers: $investigativeValue ');
-  print('Number of "investigativeString" answers: $investigativeString ');
-
-  print('Number of "artisticUse" answers: $artisticUse ');
-  print('Number of "artisticValue" answers: $artisticValue ');
-  print('Number of "artisticString" answers: $artisticString ');
-
-  print('Number of "socialUse" answers: $socialUse ');
-  print('Number of "socialValue" answers: $socialValue ');
-  print('Number of "socialString" answers: $socialString ');
-
-  print('Number of "enterprisingUse" answers: $enterprisingUse ');
-  print('Number of "enterprisingValue" answers: $enterprisingValue ');
-  print('Number of "enterprisingString" answers: $enterprisingString ');
-
-  print('Number of "conventionalUse" answers: $conventionalUse ');
-  print('Number of "conventionalValue" answers: $conventionalValue ');
-  print('Number of "conventionalString" answers: $conventionalString '); */
   return [
     reaslisticString,
     investigativeString,
@@ -92,7 +69,6 @@ List<String> calculateValues(List<String> answers) {
     socialString,
     enterprisingString,
     conventionalString,
-    //countYesUseString
   ];
 }
 
