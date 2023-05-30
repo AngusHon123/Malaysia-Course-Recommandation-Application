@@ -6,17 +6,21 @@ import 'package:fl_chart/fl_chart.dart';
 import './1.4RadarChart.dart';
 import './1.5DBHelper.dart';
 import './2History.dart';
+import '0.3Course.dart';
+
+import 'package:url_launcher/url_launcher.dart';
 
 class Result extends StatelessWidget {
   final List<String> assessmentAnswerByUser;
   final List<String> resultStrings;
   final List<String> categories;
+  final List<Course> courseRecommandLists;
 
-  const Result({
-    required this.assessmentAnswerByUser,
-    required this.resultStrings,
-    required this.categories,
-  });
+  const Result(
+      {required this.assessmentAnswerByUser,
+      required this.resultStrings,
+      required this.categories,
+      required this.courseRecommandLists});
 
   @override
   Widget build(BuildContext context) {
@@ -64,29 +68,71 @@ class Result extends StatelessWidget {
       body: ListView(
         children: [
           Container(
-            height: 50,
+            height: 200,
+            padding: EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('This is your graph'),
-                SizedBox(height: 10),
+                RadarChartWidget(resultStrings: resultStrings),
               ],
             ),
           ),
-          Container(
-            height: 200,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [RadarChartWidget(resultStrings: resultStrings)],
+          SizedBox(height: 20),
+          Text(
+            'Your top 3 categories/themes are:',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
             ),
           ),
-          Text('Your top 3 categories/themes are: ' +
-              categories[0] +
-              ',' +
-              categories[1] +
-              ',' +
-              categories[2] +
-              '.'),
+          SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              for (var category in categories)
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 4),
+                  child: Chip(
+                    label: Text(category),
+                    backgroundColor: Colors.blue,
+                    labelStyle: TextStyle(color: Colors.white),
+                  ),
+                ),
+            ],
+          ),
+          SizedBox(height: 20),
+          Text(
+            'The recommended courses are:',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 10),
+          Column(
+            children: [
+              for (var course in courseRecommandLists)
+                ListTile(
+                  title: Text(course.courseName),
+                  subtitle: Text(course.courseCode),
+                  leading: Icon(Icons.book),
+                  trailing: Icon(Icons.arrow_forward),
+                  onTap: () async {
+                    String url =
+                        'https://study.um.edu.my/doc/brochures/2022-Syarat-Kemasukan.pdf';
+                    if (await canLaunch(url)) {
+                      await launch(url);
+                    } else {
+                      throw 'Could not launch $url';
+                    }
+                  },
+                ),
+            ],
+          ),
         ],
       ),
     );

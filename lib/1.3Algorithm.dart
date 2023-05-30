@@ -1,3 +1,6 @@
+import "./0.31UMCourse.dart";
+import './0.3Course.dart';
+
 List<String> calculateValues(List<String> answers) {
   int reaslisticUse = 0;
   int investigativeUse = 0;
@@ -90,7 +93,42 @@ List<String> findCategories(List<String> resultStrings) {
 
   List<String> topThreeCategories =
       sortedCategories.take(3).map((entry) => entry.key).toList();
-  print(Categories);
-  print(topThreeCategories);
+
   return topThreeCategories;
+}
+
+List<Course> findCourseRecommand(List<String> assessmentCategories) {
+  List<Course> courseRecommandList = [];
+  List<Course> courseRecommandList2 = [];
+
+  for (Course course in school1Courses) {
+    if (course.categories1 == assessmentCategories[0] &&
+        course.categories2 == assessmentCategories[1]) {
+      courseRecommandList2.add(course);
+    }
+  }
+
+  if (courseRecommandList2.length <=
+      1 /*length of courseRecommandList2=0 or 1*/) {
+    if (courseRecommandList2.isEmpty /*length of courseRecommandList2=0*/) {
+      for (Course course in school1Courses) {
+        if (course.categories1 == assessmentCategories[0]) {
+          courseRecommandList2.add(course);
+        }
+      }
+    } else /*length of courseRecommandList2=1*/
+    {
+      for (Course course in school1Courses) {
+        if (course.categories1 == assessmentCategories[0] &&
+            courseRecommandList2[0].courseCode != course.courseCode) {
+          courseRecommandList2.add(course);
+        }
+      }
+    }
+  }
+  courseRecommandList.add(courseRecommandList2[0]);
+  courseRecommandList2.removeAt(0);
+  courseRecommandList2.shuffle();
+  courseRecommandList.add(courseRecommandList2[0]);
+  return courseRecommandList;
 }

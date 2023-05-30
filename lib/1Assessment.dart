@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fyp/0.3Course.dart';
 import './0.1global_variables.dart';
 import './1.1Question.dart';
 import './1.2Result.dart';
@@ -74,6 +75,8 @@ class _AssessmentState extends State<Assessment> {
           List<String> resultStrings = calculateValues(answers); //1.3Algorithm
           List<String> assessmentCategories =
               findCategories(resultStrings); //1.3Algorithm
+          List<Course> courseRecommandLists =
+              findCourseRecommand(assessmentCategories);
 
           Navigator.push(
               context,
@@ -82,6 +85,7 @@ class _AssessmentState extends State<Assessment> {
                         assessmentAnswerByUser: assessmentAnswerByUser,
                         resultStrings: resultStrings,
                         categories: assessmentCategories,
+                        courseRecommandLists: courseRecommandLists,
                       )));
         },
         child: Icon(Icons.check),

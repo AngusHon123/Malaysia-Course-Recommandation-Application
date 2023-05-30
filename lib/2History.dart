@@ -1,5 +1,6 @@
 import './1.5dbHelper.dart';
 import 'package:flutter/material.dart';
+import './2.1Review.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key}) : super(key: key);
@@ -13,6 +14,8 @@ class _MyHomePageState extends State<MyHomePage> {
   final _nameController = TextEditingController();
   final _ageController = TextEditingController();
   List<Map<String, dynamic>> _dataList = [];
+  List<String> yourResultStringsArray = []; // 替换为您的结果字符串数组
+  List<String> yourAssessmentCategoriesArray = []; // 替换为您的评估类别数组
 
   @override
   void initState() {
@@ -99,33 +102,64 @@ class _MyHomePageState extends State<MyHomePage> {
               itemCount: _dataList.length,
               itemBuilder: (context, index) {
                 final data = _dataList[index];
-                return Card(
-                  margin: const EdgeInsets.symmetric(
-                      horizontal: 16.0, vertical: 8.0),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Name: ${data['name']}',
-                              style: TextStyle(fontSize: 18.0),
-                            ),
-                            SizedBox(height: 4.0),
-                            Text(
-                              'Age: ${data['categories1']}',
-                              style: TextStyle(fontSize: 16.0),
-                            ),
+
+                return InkWell(
+                  onTap: () {
+                    // 处理点击事件
+                    print('Card tapped! ${data['name']}');
+                    print('id:${data['id']}');
+                    print(data['reaslisticString']);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Review(
+                          resultStrings: yourResultStringsArray = [
+                            data['reaslisticString'].toString(),
+                            data['investigativeString'].toString(),
+                            data['artisticString'].toString(),
+                            data['socialString'].toString(),
+                            data['enterprisingString'].toString(),
+                            data['conventionalString'].toString(),
+                          ],
+                          categories: yourAssessmentCategoriesArray = [
+                            data['categories1'],
+                            data['categories2'],
+                            data['categories3'],
                           ],
                         ),
-                        IconButton(
-                          icon: Icon(Icons.delete),
-                          onPressed: () => _deleteData(data['id']),
-                        ),
-                      ],
+                      ),
+                    );
+                  },
+                  splashColor: Colors.blue, // 水波纹颜色
+                  highlightColor: Colors.green, // 高亮颜色
+                  child: Card(
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 8.0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'categories: ${data['name']}',
+                                style: TextStyle(fontSize: 18.0),
+                              ),
+                              SizedBox(height: 4.0),
+                              Text(
+                                'categoriesString: ${data['artisticString']}',
+                                style: TextStyle(fontSize: 16.0),
+                              ),
+                            ],
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.delete),
+                            onPressed: () => _deleteData(data['id']),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 );
