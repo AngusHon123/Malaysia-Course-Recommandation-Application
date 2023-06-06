@@ -67,6 +67,7 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
           ),
+          backgroundColor: Color.fromARGB(255, 28, 17, 107),
         ),
         body: IndexedStack(
           children: [
@@ -93,6 +94,7 @@ class _MyAppState extends State<MyApp> {
           ],
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
+          selectedItemColor: Color.fromARGB(255, 28, 17, 107),
         ),
       ),
     );

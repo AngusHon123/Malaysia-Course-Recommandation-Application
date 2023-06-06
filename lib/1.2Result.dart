@@ -37,6 +37,9 @@ class Result extends StatelessWidget {
         ),
         actions: [
           ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Color.fromARGB(255, 28, 17, 107),
+            ),
             onPressed: () async {
               await DBHelper.insert('mytable', {
                 'name': categories[0],
@@ -64,6 +67,7 @@ class Result extends StatelessWidget {
             child: Text('Save'),
           ),
         ],
+        backgroundColor: Color.fromARGB(255, 28, 17, 107),
       ),
       body: ListView(
         children: [

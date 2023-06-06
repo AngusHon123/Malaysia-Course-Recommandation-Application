@@ -24,6 +24,7 @@ class _AssessmentState extends State<Assessment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFeff5ee),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView.builder(

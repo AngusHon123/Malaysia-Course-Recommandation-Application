@@ -25,16 +25,14 @@ class DatabaseHelper {
 
 /* 
 實做型(R)：
-情緒穩定、有耐性、坦承直率，寧願行動不喜多言，喜歡在講求實際、需要動手環境中從事明確固定的工作，依既定的規則，一步一步地製造完成有實際用途的物品。對機械與工具等事物較有興趣，生活上亦以實用為重，眼前的事重於對未來的想像，比較喜歡獨自做事。
+Emotionally stable and patient, they would rather act than talk. Have the ability to operate machinery, like to do things alone and follow the established rules, step by step to manufacture and complete practical objects.
 研究型(I)：
-善於觀察、思考、分析與推理，喜歡用頭腦依自己的步調解決問題，並追根究底。不喜歡別人給指引，工作時也不喜歡有很多規矩和時間壓力。做事時，能提出新的想法和策略，但對實際解決問題的細節較無興趣。不是很在乎別人的看法，喜歡和有相同興趣或專業的人討論，否則還不如自己看書或思考。 
+Have mathematical ability and the spirit of scientific research, like to observe, research, think, analyze and solve problems, and don't like others to give guidance. I also don't like having a lot of rules and time pressure at work. When doing things, can come up with new ideas and strategies, but is less interested in the details of actually solving problems. Don't care much about other people's opinions.
 藝術型(A)：
-直覺敏銳、善於表達和創新。希望藉文字、聲音、色彩或形式來表達創造力和美的感受。喜歡獨立作業，但也不想／不喜歡被忽略，在無拘無束的環境下工作效率最好。生活的目的就是創造不平凡的事務，不喜歡管人和被人管，和朋友的關係比較隨興。
-企業型(E)：
-精力旺盛、生活緊湊、好冒險競爭，做事有計畫並立刻行動。不願花太多時間做科學研究，希望擁有權力去改善不合理的事。善用說服力和組織能力，希望自己的表現被他人肯定，並成為團體的焦點人物。不以現階段的成就為滿足，也要求別人跟他一樣努力。
+Artistic, intuitive, and creative. Like to use imagination and creativity, engage in aesthetic creation, and hope to express creativity and beauty through words, sounds, colors or forms. Likes to work independently, but also doesn't want/like to be ignored, works best in an uninhibited environment.
 社會型(S)：
-對人和善、容易相處，關心自己和別人的感受，喜歡傾聽和瞭解別人，也願意付出時間和精力去解決別人的困擾。喜歡教導別人，並幫助他人成長。不喜歡競爭，喜歡大家一起做事，一起為團體盡力。容易與人對應、互動，關心人勝過於關心工作。
+Kind and easy to get along with people, cares about own and others' feelings, likes to listen to and understand others, and is willing to devote time and energy to solving other people's troubles and helping them grow. Don't like competition, but like to work in a team.
 企業型(E)：
-精力旺盛、生活緊湊、好冒險競爭，做事有計畫並立刻行動。不願花太多時間做科學研究，希望擁有權力去改善不合理的事。善用說服力和組織能力，希望自己的表現被他人肯定，並成為團體的焦點人物。不以現階段的成就為滿足，也要求別人跟他一樣努力。
+Energetic, compact life, adventurous and competitive, have a plan and act immediately. Like to use influence and persuasion to improve unreasonable things. Pursue political or economic achievements, and hope that their performance will be affirmed by others and become the focus of the group.
 事務型(C)：
-個性謹慎、做事講求規矩和精確。喜歡在有清楚規範的環境下工作。做事按部就班、精打細算，給人的感覺是有效率、精確、仔細、可靠而有信用。他們的生活哲學是穩紮穩打，不喜歡改變或創新，也不喜歡冒險或領導。會選擇和自己志趣相投的人為好朋友。*/
+Have agile clerical and computing skills, like to deal with clerical or digital materials. Do things with rules and precision. Likes to work in an environment with clear rules. Their philosophy of life is to play it safe and not like change or innovation, taking risks or leading.*/
