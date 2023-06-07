@@ -5,10 +5,10 @@ import 'package:sqflite/sqflite.dart';
 class DBHelper {
   static Future<Database> database() async {
     return openDatabase(
-      join(await getDatabasesPath(), 'my_database2.db'),
+      join(await getDatabasesPath(), 'my_database.db'),
       onCreate: (db, version) async {
         await db.execute(
-          'CREATE TABLE mytable(id INTEGER PRIMARY KEY, name TEXT,age INT, reaslisticString INT, investigativeString INT, artisticString INT, socialString INT, enterprisingString INT, conventionalString INT, categories1 TEXT, categories2 TEXT, categories3 TEXT)',
+          'CREATE TABLE mytable(id INTEGER PRIMARY KEY, name TEXT,age INT, reaslisticString INT, investigativeString INT, artisticString INT, socialString INT, enterprisingString INT, conventionalString INT, categories1 TEXT, categories2 TEXT, categories3 TEXT, courseRecommand1 TEXT, courseRecommand2 TEXT)',
         );
       },
       version: 1,

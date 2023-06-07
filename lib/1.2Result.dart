@@ -7,6 +7,7 @@ import './1.4RadarChart.dart';
 import './1.5DBHelper.dart';
 import './2History.dart';
 import '0.3Course.dart';
+import '3AIChat.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
@@ -53,6 +54,8 @@ class Result extends StatelessWidget {
                 'categories1': categories[0],
                 'categories2': categories[1],
                 'categories3': categories[2],
+                'courseRecommand1': courseRecommandLists[0].courseCode,
+                'courseRecommand2': courseRecommandLists[1].courseCode
               });
               final snackBar = SnackBar(content: Text('Saved'));
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -60,7 +63,7 @@ class Result extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => MyHomePage(),
+                  builder: (context) => AIChat(),
                 ),
               );
             },
@@ -94,20 +97,86 @@ class Result extends StatelessWidget {
             ),
           ),
           SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              for (var category in categories)
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 4),
-                  child: Chip(
-                    label: Text(category),
-                    backgroundColor: Colors.blue,
-                    labelStyle: TextStyle(color: Colors.white),
+          SizedBox(height: 20),
+          for (var category in categories)
+            if (category == 'realistic')
+              ExpansionTile(
+                title: Text(category),
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text(
+                      'Emotionally stable and patient, they would rather act than talk. Have the ability to operate machinery, like to do things alone and follow the established rules, step by step to manufacture and complete practical objects.',
+                      style: TextStyle(fontSize: 14),
+                    ),
                   ),
-                ),
-            ],
-          ),
+                ],
+              )
+            else if (category == 'investigative')
+              ExpansionTile(
+                title: Text(category),
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text(
+                      'Have mathematical ability and the spirit of scientific research, like to observe, research, think, analyze and solve problems, and don\'t like others to give guidance. I also don\'t like having a lot of rules and time pressure at work. When doing things, can come up with new ideas and strategies, but is less interested in the details of actually solving problems. Don\'t care much about other people\'s opinions.',
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ),
+                ],
+              )
+            else if (category == 'artistic')
+              ExpansionTile(
+                title: Text(category),
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text(
+                      'Artistic, intuitive, and creative. Like to use imagination and creativity, engage in aesthetic creation, and hope to express creativity and beauty through words, sounds, colors, or forms. Likes to work independently, but also doesn\'t want/like to be ignored, works best in an uninhibited environment.',
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ),
+                ],
+              )
+            else if (category == 'social')
+              ExpansionTile(
+                title: Text(category),
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text(
+                      'Kind and easy to get along with people, cares about own and others\' feelings, likes to listen to and understand others, and is willing to devote time and energy to solving other people\'s troubles and helping them grow. Don\'t like competition, but like to work in a team.',
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ),
+                ],
+              )
+            else if (category == 'enterprising')
+              ExpansionTile(
+                title: Text(category),
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text(
+                      'Energetic, compact life, adventurous and competitive, have a plan and act immediately. Like to use influence and persuasion to improve unreasonable things. Pursue political or economic achievements, and hope that their performance will be affirmed by others and become the focus of the group.',
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ),
+                ],
+              )
+            else if (category == 'conventional')
+              ExpansionTile(
+                title: Text(category),
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text(
+                      'Have agile clerical and computing skills, like to deal with clerical or digital materials. Do things with rules and precision. Likes to work in an environment with clear rules. Their philosophy of life is to play it safe and not like change or innovation, taking risks or leading.',
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ),
+                ],
+              ),
           SizedBox(height: 20),
           Text(
             'The recommended courses are:',
@@ -122,7 +191,15 @@ class Result extends StatelessWidget {
               for (var course in courseRecommandLists)
                 ListTile(
                   title: Text(course.courseName),
-                  subtitle: Text(course.courseCode),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(course.courseCode),
+                      Text('Entry Points: ${course.entryPoints}'),
+                      Text('University: ${course.university}'),
+                      Text('Stream: ${course.stream}'),
+                    ],
+                  ),
                   leading: Icon(Icons.book),
                   trailing: Icon(Icons.arrow_forward),
                   onTap: () async {

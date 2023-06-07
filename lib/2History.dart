@@ -11,12 +11,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final _formKey = GlobalKey<FormState>();
-  final _nameController = TextEditingController();
-  final _ageController = TextEditingController();
-  List<Map<String, dynamic>> _dataList = [];
-  List<String> yourResultStringsArray = []; // 替换为您的结果字符串数组
-  List<String> yourAssessmentCategoriesArray = []; // 替换为您的评估类别数组
 
+  List<Map<String, dynamic>> _dataList = [];
+  List<String> yourResultStringsArray = [];
+  List<String> yourAssessmentCategoriesArray = [];
+  List<String> courseRecommandArray = [];
   @override
   void initState() {
     super.initState();
@@ -30,19 +29,6 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  Future<void> _addData() async {
-    if (_formKey.currentState!.validate()) {
-      print(_ageController.text);
-      await DBHelper.insert('mytable', {
-        'name': _nameController.text,
-        'age': _ageController.text,
-      });
-      _nameController.clear();
-      _ageController.clear();
-      _getData();
-    }
-  }
-
   Future<void> _deleteData(int id) async {
     await DBHelper.deleteData('mytable', id);
     _getData();
@@ -54,48 +40,6 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Form(
-              key: _formKey,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextFormField(
-                      controller: _nameController,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter a name';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        labelText: 'Name',
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                    TextFormField(
-                      controller: _ageController,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter a age';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        labelText: 'Age',
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                    SizedBox(height: 16.0),
-                    ElevatedButton(
-                      onPressed: _addData,
-                      child: Text('Add'),
-                    ),
-                  ],
-                ),
-              ),
-            ),
             Divider(),
             ListView.builder(
               shrinkWrap: true,
@@ -125,6 +69,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             data['categories1'],
                             data['categories2'],
                             data['categories3'],
+                          ],
+                          courseRecommand: courseRecommandArray = [
+                            data['courseRecommand1'],
+                            data['courseRecommand2'],
                           ],
                         ),
                       ),
