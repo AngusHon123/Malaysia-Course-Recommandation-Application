@@ -63,7 +63,7 @@ class Result extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => AIChat(),
+                  builder: (context) => Introduction(),
                 ),
               );
             },

@@ -35,7 +35,7 @@ List<String> calculateValues(List<String> answers) {
       conventionalUse++;
       countYesUse++;
     }
-    print(ifUse);
+
     ifUse++;
   }
 

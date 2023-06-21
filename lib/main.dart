@@ -71,9 +71,9 @@ class _MyAppState extends State<MyApp> {
         ),
         body: IndexedStack(
           children: [
-            Assessment(),
+            Introduction(),
             MyHomePage(),
-            AIChat(),
+            /* AIChat() ,*/
           ],
           index: _selectedIndex,
         ),

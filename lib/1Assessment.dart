@@ -1,95 +1,59 @@
 import 'package:flutter/material.dart';
-import 'package:fyp/0.3Course.dart';
 import './0.1global_variables.dart';
-import './1.1Question.dart';
-import './1.2Result.dart';
-import './1.3Algorithm.dart';
-import './1.4RadarChart.dart';
+import './1.6Assessment.dart';
 
-class Assessment extends StatefulWidget {
-  @override
-  _AssessmentState createState() => _AssessmentState();
-}
-
-class _AssessmentState extends State<Assessment> {
-  List<String> answers = []; // 添加初始化
-
-  @override
-  void initState() {
-    super.initState();
-    // 在 initState 方法中对 answers 进行初始化
-    answers = List.filled(questions.length, '');
-  }
-
+class Introduction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xFFeff5ee),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ListView.builder(
-          itemCount: questions.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Card(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      questions[index].text,
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 16.0),
-                    for (String option in questions[index].options)
-                      Row(
-                        children: [
-                          Radio(
-                            value: option,
-                            groupValue: answers[index],
-                            onChanged: (value) {
-                              setState(() {
-                                answers[index] = value as String;
-                              });
-                            },
-                          ),
-                          Text(option),
-                        ],
-                      ),
-                  ],
+    return MaterialApp(
+      title: 'UPR',
+      home: Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'UPR',
+                style: TextStyle(
+                  fontSize: 80.0,
+                  color: Colors.blue,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-            );
-          },
+              Text(
+                'University Course Recommendation',
+                style: TextStyle(
+                  fontSize: 24.0,
+                  color: Colors.black,
+                ),
+              ),
+              Container(
+                alignment: Alignment.center,
+                padding: EdgeInsets.all(16.0),
+                child: Text(
+                  'This app helps you find the best courses for your university education.',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    color: Colors.grey[600],
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 32.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Assessment()), // 替换为实际的类名
+                    );
+                  },
+                  child: Text('Start'),
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          List<String> assessmentAnswerByUser = [];
-          for (int i = 0; i < questions.length; i++) {
-            assessmentAnswerByUser.add('${questions[i].text}: ${answers[i]}');
-          }
-
-          List<String> resultStrings = calculateValues(answers); //1.3Algorithm
-          List<String> assessmentCategories =
-              findCategories(resultStrings); //1.3Algorithm
-          List<Course> courseRecommandLists =
-              findCourseRecommand(assessmentCategories);
-
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => Result(
-                        assessmentAnswerByUser: assessmentAnswerByUser,
-                        resultStrings: resultStrings,
-                        categories: assessmentCategories,
-                        courseRecommandLists: courseRecommandLists,
-                      )));
-        },
-        child: Icon(Icons.check),
       ),
     );
   }
