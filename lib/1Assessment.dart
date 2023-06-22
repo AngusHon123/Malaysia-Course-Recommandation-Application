@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './0.1global_variables.dart';
 import './1.6Assessment.dart';
+import './1.3Algorithm.dart';
 
 class Introduction extends StatelessWidget {
   @override
@@ -42,6 +43,7 @@ class Introduction extends StatelessWidget {
                 margin: EdgeInsets.only(top: 32.0),
                 child: ElevatedButton(
                   onPressed: () {
+                    getCurrentDateTime();
                     Navigator.push(
                       context,
                       MaterialPageRoute(

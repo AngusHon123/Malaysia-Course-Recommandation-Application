@@ -19,7 +19,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   int _selectedIndex = 0;
-  String _name = '';
 
   void _onItemTapped(int index) {
     setState(() {
@@ -27,56 +26,39 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  void _onNameChanged(String name) {
-    setState(() {
-      _name = name;
-    });
+  Widget _buildSelectedScreen() {
+    switch (_selectedIndex) {
+      case 0:
+        return Introduction();
+      case 1:
+        return MyHomePage();
+      /* case 2:
+        return AIChat(); */
+      default:
+        return Container();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          bottom: PreferredSize(
-            preferredSize: Size.fromHeight(24.0),
-            child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(24.0),
-                color: Colors.white,
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        hintText: 'Search...',
-                        border: InputBorder.none,
-                        /* prefixIcon: Icon(Icons.search), */
-                      ),
-                    ),
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.search),
-                    onPressed: () {
-                      // TODO: 执行搜索操作
-                    },
-                  ),
-                ],
-              ),
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(72.0),
+          child: AppBar(
+            backgroundColor: Color.fromARGB(255, 28, 17, 107),
+            /* leading: Image.asset(
+              'assets/graduation.png', // 请替换为你的图标文件路径
+              width: 24.0,
+              height: 24.0,
+            ), */
+            title: Text(
+              'UPRecommendation',
+              style: TextStyle(fontSize: 24.0), // 调整文本大小
             ),
           ),
-          backgroundColor: Color.fromARGB(255, 28, 17, 107),
         ),
-        body: IndexedStack(
-          children: [
-            Introduction(),
-            MyHomePage(),
-            /* AIChat() ,*/
-          ],
-          index: _selectedIndex,
-        ),
+        body: _buildSelectedScreen(),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(

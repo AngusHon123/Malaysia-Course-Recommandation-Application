@@ -169,6 +169,7 @@ class _AssessmentState extends State<Assessment> {
             Navigator.pop(context);
           },
         ),
+        backgroundColor: Color.fromARGB(255, 28, 17, 107),
       ),
       backgroundColor: Color(0xFFeff5ee),
       body: Padding(
@@ -221,20 +222,26 @@ class _AssessmentState extends State<Assessment> {
         onPressed: () {
           bool hasUnansweredQuestions = false;
 
+          List<int> questionNoAnswer = [];
           for (int i = 0; i < questions.length; i++) {
             if (answers[i].isEmpty) {
               hasUnansweredQuestions = true;
               isAnswered[i] = false;
+              questionNoAnswer.add(i + 1);
             } else {
               isAnswered[i] = true;
             }
           }
 
           if (hasUnansweredQuestions) {
+            /* print(questionNoAnswer[0]); */
             setState(() {});
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text('Please answer all questions.'),
+                content: Text('Please answer questions: ' +
+                    questionNoAnswer.join(", ") +
+                    '.'), // 字符串拼接
+                // 字符串拼接
               ),
             );
           } else {

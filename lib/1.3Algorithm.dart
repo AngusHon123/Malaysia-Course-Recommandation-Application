@@ -132,3 +132,10 @@ List<Course> findCourseRecommand(List<String> assessmentCategories) {
   courseRecommandList.add(courseRecommandList2[0]);
   return courseRecommandList;
 }
+
+String getCurrentDateTime() {
+  DateTime dateTime = DateTime.now();
+  String formattedDateTime = dateTime.toString().substring(0, 19);
+  print('Current Date: $formattedDateTime.');
+  return formattedDateTime;
+}

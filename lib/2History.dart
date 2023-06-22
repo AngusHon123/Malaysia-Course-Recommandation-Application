@@ -92,12 +92,12 @@ class _MyHomePageState extends State<MyHomePage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'categories: ${data['name']}',
+                                'DateTime: ${data['DateTime']}',
                                 style: TextStyle(fontSize: 18.0),
                               ),
                               SizedBox(height: 4.0),
                               Text(
-                                'categoriesString: ${data['artisticString']}',
+                                'courseRecommand: ${data['courseRecommand1']}',
                                 style: TextStyle(fontSize: 16.0),
                               ),
                             ],

@@ -8,6 +8,7 @@ import './1.5DBHelper.dart';
 import './2History.dart';
 import '0.3Course.dart';
 import '3AIChat.dart';
+import './1.3Algorithm.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
@@ -42,15 +43,15 @@ class Result extends StatelessWidget {
               primary: Color.fromARGB(255, 28, 17, 107),
             ),
             onPressed: () async {
+              String CurrentDateTime = getCurrentDateTime();
               await DBHelper.insert('mytable', {
-                'name': categories[0],
-                'age': '32',
-                'reaslisticString': resultStrings[0] = '2'.toString(),
-                'investigativeString': resultStrings[1] = '3'.toString(),
-                'artisticString': resultStrings[2] = '4'.toString(),
-                'socialString': resultStrings[3] = '5'.toString(),
-                'enterprisingString': resultStrings[4] = '6'.toString(),
-                'conventionalString': resultStrings[5] = '7'.toString(),
+                'DateTime': CurrentDateTime.toString(),
+                'reaslisticString': resultStrings[0].toString(),
+                'investigativeString': resultStrings[1].toString(),
+                'artisticString': resultStrings[2].toString(),
+                'socialString': resultStrings[3].toString(),
+                'enterprisingString': resultStrings[4].toString(),
+                'conventionalString': resultStrings[5].toString(),
                 'categories1': categories[0],
                 'categories2': categories[1],
                 'categories3': categories[2],
@@ -60,12 +61,7 @@ class Result extends StatelessWidget {
               final snackBar = SnackBar(content: Text('Saved'));
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
               await Future.delayed(Duration(seconds: 1));
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Introduction(),
-                ),
-              );
+              Navigator.popUntil(context, ModalRoute.withName('/')); // 返回最初的页面
             },
             child: Text('Save'),
           ),

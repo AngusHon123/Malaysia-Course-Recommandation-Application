@@ -41,6 +41,7 @@ class Review extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
+        backgroundColor: Color.fromARGB(255, 28, 17, 107),
       ),
       body: ListView(
         children: [
