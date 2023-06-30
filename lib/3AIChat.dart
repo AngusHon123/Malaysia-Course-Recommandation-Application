@@ -75,7 +75,7 @@ class _ChatScreenState extends State<ChatScreen> {
     } catch (e) {
       print('Error: $e');
 
-      /* addMessage('AI: Failed to get a reply from the AI model.'); */
+      addMessage('AI: Failed to get a reply from the AI model.');
     }
   }
 
