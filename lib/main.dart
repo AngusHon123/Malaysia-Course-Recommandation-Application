@@ -32,8 +32,8 @@ class _MyAppState extends State<MyApp> {
         return Introduction();
       case 1:
         return MyHomePage();
-      /* case 2:
-        return AIChat(); */
+      case 2:
+        return AIChatApp();
       default:
         return Container();
     }
