@@ -162,7 +162,7 @@ class _AssessmentState extends State<Assessment> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Results Review'),
+        title: Text('Holland Code Assessment'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {

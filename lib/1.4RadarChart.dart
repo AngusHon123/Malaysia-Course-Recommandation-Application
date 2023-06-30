@@ -10,7 +10,7 @@ class RadarChartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const ticks = [20, 40, 60, 80, 100];
+    const ticks = [100];
     var features = [
       "REALISTIC ",
       "INVESTIGATIVE ",
@@ -29,8 +29,8 @@ class RadarChartWidget extends StatelessWidget {
         ticks: ticks,
         features: features,
         data: data,
-        reverseAxis: true,
-        useSides: false,
+        reverseAxis: false,
+        useSides: true,
       ),
     );
   }

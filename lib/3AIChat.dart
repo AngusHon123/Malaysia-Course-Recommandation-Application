@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import '0.1global_variables.dart';
 
 void main() {
   runApp(AIChatApp());
@@ -74,7 +75,7 @@ class _ChatScreenState extends State<ChatScreen> {
     } catch (e) {
       print('Error: $e');
 
-      addMessage('AI: Failed to get a reply from the AI model.');
+      /* addMessage('AI: Failed to get a reply from the AI model.'); */
     }
   }
 

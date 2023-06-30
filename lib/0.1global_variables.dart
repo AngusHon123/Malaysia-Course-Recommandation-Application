@@ -4,4 +4,4 @@ String happy = '';
 String hobby = '';
 String single = '';
 
-int sosial = 7;
+int sosial = 0;
